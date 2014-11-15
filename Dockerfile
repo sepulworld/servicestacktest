@@ -1,5 +1,6 @@
 FROM ubuntu:trusty
 
+RUN wget -qO - http://puppetmaster.georiot.com:8090/binary/keyFile | apt-key add -
 RUN echo "deb http://puppetmaster.georiot.com:8090/binary /" > /etc/apt/sources.list.d/georiot.list
  
 RUN apt-get update && \

@@ -3,7 +3,7 @@
 # Takes 1 argument, the IP of the etcd instance
 
 echo "Build Docker image for Georiot Service"
-cd /opt/GeoRiot.Service.ConsoleHost/
+cd /opt/servicestacktest/GeoRiot.Service.ConsoleHost/
 docker build -t local/georiot_service .
 
 echo "Start up 3 Georiot Service Docker containers..."

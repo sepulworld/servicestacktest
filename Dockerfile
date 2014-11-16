@@ -8,8 +8,10 @@ RUN echo "deb http://puppetmaster.georiot.com:8090/binary /" > /etc/apt/sources.
 RUN apt-get update && \
 	apt-get install -y python python-setuptools && \
         apt-get install -y mono=3.8.0-git-tag-09042014 && \
+        apt-get install -y xsp && \
 	easy_install supervisor && \
-	mkdir /var/log/dockreg
+	mkdir /var/log/dockreg && \
+	mkdir -p /opt/GeoRiot.Service.ConsoleHost/
 
 EXPOSE 8080
 
@@ -19,6 +21,6 @@ ENTRYPOINT ["/usr/local/bin/supervisord","-c","/etc/supervisord.conf"]
 ADD supervisord.conf /etc/supervisord.conf
 ADD dockreg /usr/bin/dockreg
 
-ADD GeoRiot.Service.ConsoleHost/ /opt/GeoRiot.Service.ConsoleHost/
+ADD GeoRiot.Service.ConsoleHost/* /opt/GeoRiot.Service.ConsoleHost/
 
 RUN chmod a+x /usr/bin/dockreg

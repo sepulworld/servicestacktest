@@ -7,8 +7,8 @@ RUN echo "deb http://puppetmaster.georiot.com:8090/binary /" > /etc/apt/sources.
 
 RUN apt-get update && \
 	apt-get install -y python python-setuptools nodejs && \
-        apt-get install -y mono=3.8.0-git-tag-09042014 && \
-        apt-get install -y xsp && \
+        apt-get install -y mono && \
+        apt-get install -y curl && \
 	easy_install supervisor && \
 	mkdir /var/log/dockreg && \
 	mkdir -p /opt/GeoRiot.Service.ConsoleHost/

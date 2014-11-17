@@ -14,6 +14,7 @@ RUN apt-get update && \
 	mkdir -p /opt/GeoRiot.Service.ConsoleHost/
 
 EXPOSE 8080
+EXPOSE 8000
 
 CMD []
 ENTRYPOINT ["/usr/local/bin/supervisord","-c","/etc/supervisord.conf"]

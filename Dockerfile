@@ -6,7 +6,7 @@ RUN wget -qO - http://puppetmaster.georiot.com:8090/binary/keyFile | apt-key add
 RUN echo "deb http://puppetmaster.georiot.com:8090/binary /" > /etc/apt/sources.list.d/georiot.list
 
 RUN apt-get update && \
-	apt-get install -y python python-setuptools && \
+	apt-get install -y python python-setuptools nodejs && \
         apt-get install -y mono=3.8.0-git-tag-09042014 && \
         apt-get install -y xsp && \
 	easy_install supervisor && \

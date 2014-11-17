@@ -23,4 +23,6 @@ ADD dockreg /usr/bin/dockreg
 
 ADD GeoRiot.Service.ConsoleHost/* /opt/GeoRiot.Service.ConsoleHost/
 
+ADD node-app/server.js /root/server.js
+
 RUN chmod a+x /usr/bin/dockreg

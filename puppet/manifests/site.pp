@@ -59,7 +59,7 @@ node default {
     priority => '100',
   }
   
-  supervisord::program { 'synaspe':
+  supervisord::program { 'nerve':
     command    => 'nerve -c /etc/nerve.json.conf',
     priority => '100',
   }

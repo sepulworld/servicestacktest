@@ -13,7 +13,6 @@ node default {
 
   package { $build_packages:
     ensure => installed,
-    before => Exec['go get github.com/adetante/hadiscover'],
   }
  
   package { 'synapse':
@@ -29,7 +28,7 @@ node default {
   package { 'haproxy':
     ensure    => installed,
     require   => Apt::Ppa['ppa:vbernat/haproxy-1.5'],
-    #  before => Supervisord::Program['synapse'],
+    before => Supervisord::Program['synapse'],
   }
 
   service { 'haproxy':
@@ -40,7 +39,6 @@ node default {
   apt::key { "Georiot":
     key        => "0211F6D4",
     key_source => "http://puppetmaster.georiot.com:8090/binary/keyFile",
-    before     => Class['::etcd'], 
   }
 
   apt::source { 'georiot':
@@ -48,7 +46,6 @@ node default {
     include_src  => false,
     release      => "",
     repos        => '/',
-    before       => Class['::etcd'], 
   }
 
   apt::ppa { 'ppa:vbernat/haproxy-1.5': }

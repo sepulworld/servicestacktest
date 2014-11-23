@@ -54,7 +54,7 @@ node default {
   apt::ppa { 'ppa:vbernat/haproxy-1.5': }
 
  
-  supervisord::program { 'synaspe':
+  supervisord::program { 'synapse':
     command    => 'synapse -c /etc/synapse.json.conf',
     priority => '100',
   }

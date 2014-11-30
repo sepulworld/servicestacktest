@@ -1,13 +1,6 @@
 node default {
 
   include apt
-  include supervisord
-
-    file { '/etc/synapse.json.conf':
-      ensure => present,
-      before => Supervisord::Program['synapse'],
-      source => "puppet:///modules/synapse/synapse.json.conf.servicestack",
-    }
 
   $build_packages = ['build-essential', 'python-pip', 'ruby', 'ruby-dev' ] 
 
@@ -15,27 +8,11 @@ node default {
     ensure => installed,
   }
  
-  package { 'synapse':
-    ensure   => installed,
-    provider => gem,
-  }
-  
-  package { 'nerve':
+  package { 'etcd':
     ensure   => installed,
     provider => gem,
   }
 
-  package { 'haproxy':
-    ensure    => installed,
-    require   => Apt::Ppa['ppa:vbernat/haproxy-1.5'],
-    before => Supervisord::Program['synapse'],
-  }
-
-  service { 'haproxy':
-    ensure  => running,
-    require => Package['haproxy'],
-  }
-  
   apt::key { "Georiot":
     key        => "0211F6D4",
     key_source => "http://puppetmaster.georiot.com:8090/binary/keyFile",
@@ -47,18 +24,5 @@ node default {
     release      => "",
     repos        => '/',
   }
-
-  apt::ppa { 'ppa:vbernat/haproxy-1.5': }
-
  
-  supervisord::program { 'synapse':
-    command    => 'synapse -c /etc/synapse.json.conf',
-    priority => '100',
-  }
-  
-  supervisord::program { 'nerve':
-    command    => 'nerve -c /etc/nerve.json.conf',
-    priority => '100',
-  }
-
 }
